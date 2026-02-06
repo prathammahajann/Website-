@@ -20,13 +20,9 @@ const flow = {
   q4: {
     text: "Will you be my Valentine? 💌",
     options: [
-      { label: "Yes ❤️", next: "yes" },
-      { label: "Of course 😘", next: "yes" }
+      { label: "Yes ❤️", next: "sendMessage" },
+      { label: "Of course 😘", next: "sendMessage" }
     ]
-  },
-  yes: {
-    text: "You just made my day 💖\nCan’t wait to see you 😍",
-    options: []
   }
 };
 
@@ -34,6 +30,14 @@ const qEl = document.getElementById("question");
 const optEl = document.getElementById("options");
 
 function load(key) {
+
+  // When user clicks Yes → open WhatsApp
+  if (key === "sendMessage") {
+    window.location.href =
+      "https://wa.me/919860245352?text=I%20said%20yes%20❤️";
+    return;
+  }
+
   qEl.innerText = flow[key].text;
   optEl.innerHTML = "";
 
